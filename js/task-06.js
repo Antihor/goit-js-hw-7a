@@ -29,10 +29,10 @@ function createBoxes(amount) {
   return boxRef.append(...boxes);
 }
 
-destrRef.addEventListener('click', destroyBoxes);
-function destroyBoxes() {
+destrRef.addEventListener('click', destroyBoxes => {
   boxRef.innerHTML = '';
-}
+  inputRef.value = '';
+});
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
