@@ -2,25 +2,33 @@ const inputRef = document.querySelector('input');
 const createRef = document.querySelector('[data-create]');
 const destrRef = document.querySelector('[data-destroy]');
 const boxRef = document.querySelector('#boxes');
-const amount = Number(inputRef.value);
 
-createRef.addEventListener('click', createBoxes);
+createRef.addEventListener('click', onCreate);
+
+function onCreate(evt) {
+  const amount = inputRef.value;
+  if (amount >= 1 && amount <= 100) {
+    return createBoxes(amount);
+  }
+}
 
 function createBoxes(amount) {
   let boxes = [];
   let color = getRandomHexColor();
   for (let i = 1; i <= amount; i += 1) {
     const box = document.createElement('div');
-    const minBoxWidth = 30;
-    const minBoxHeight = 30;
+    box.classList.add('box');
+    const minBoxWidth = 20;
+    const minBoxHeight = 20;
     box.style.width = `${minBoxWidth + 10 * i}px`;
     box.style.height = `${minBoxHeight + 10 * i}px`;
     box.style.backgroundColor = color;
+
     boxes.push(box);
   }
-  boxRef.append(...boxes);
+  return boxRef.append(...boxes);
 }
-console.log(boxes);
+
 destrRef.addEventListener('click', destroyBoxes);
 function destroyBoxes() {
   boxRef.innerHTML = '';
