@@ -6,11 +6,17 @@ function onSubmit(event) {
   event.preventDefault();
 
   const { email, password } = event.currentTarget;
+  const trimmedMail = email.value.trim();
+  const trimmedPW = password.value.trim();
+  const message = {
+    email: trimmedMail,
+    password: trimmedPW,
+  };
 
-  if (email.value === '' || password.value === '') {
+  if (trimmedMail === '' || trimmedPW === '') {
     return alert('All form fields must be filled in');
   }
+  console.log(message);
 
-  console.log(`Login: ${email.value}, Password: ${password.value}`);
   event.currentTarget.reset();
 }

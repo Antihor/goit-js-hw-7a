@@ -5,7 +5,7 @@ const boxRef = document.querySelector('#boxes');
 
 createRef.addEventListener('click', onCreate);
 
-function onCreate(evt) {
+function onCreate() {
   const amount = inputRef.value;
   if (amount >= 1 && amount <= 100) {
     return createBoxes(amount);
@@ -13,13 +13,15 @@ function onCreate(evt) {
 }
 
 function createBoxes(amount) {
+  destroyBoxes();
   let boxes = [];
-  let color = getRandomHexColor();
+
   for (let i = 1; i <= amount; i += 1) {
+    let color = getRandomHexColor();
     const box = document.createElement('div');
     box.classList.add('box');
-    const minBoxWidth = 20;
-    const minBoxHeight = 20;
+    const minBoxWidth = 30;
+    const minBoxHeight = 30;
     box.style.width = `${minBoxWidth + 10 * i}px`;
     box.style.height = `${minBoxHeight + 10 * i}px`;
     box.style.backgroundColor = color;
@@ -29,10 +31,12 @@ function createBoxes(amount) {
   return boxRef.append(...boxes);
 }
 
-destrRef.addEventListener('click', destroyBoxes => {
+destrRef.addEventListener('click', destroyBoxes);
+
+function destroyBoxes() {
   boxRef.innerHTML = '';
   inputRef.value = '';
-});
+}
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
