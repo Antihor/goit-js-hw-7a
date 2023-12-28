@@ -18,12 +18,13 @@ function createBoxes(amount) {
 
   for (let i = 1; i <= amount; i += 1) {
     let color = getRandomHexColor();
+
     const box = document.createElement('div');
     box.classList.add('box');
-    const minBoxWidth = 30;
-    const minBoxHeight = 30;
-    box.style.width = `${minBoxWidth + 10 * i}px`;
-    box.style.height = `${minBoxHeight + 10 * i}px`;
+
+    const MINBOXSIDE = 20;
+    box.style.width = `${MINBOXSIDE + 10 * i}px`;
+    box.style.height = `${MINBOXSIDE + 10 * i}px`;
     box.style.backgroundColor = color;
 
     boxes.push(box);
